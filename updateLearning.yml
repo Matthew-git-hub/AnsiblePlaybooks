@@ -1,0 +1,16 @@
+#Updates Stuff
+
+- name: update stuff
+  hosts: pi
+  remote_user: matthew
+
+  tasks:
+-   name: ensures Python is up to date
+    apt:
+      name: python
+      state: latest
+
+-   name: ensures Samaba is up to date
+    apt:
+      name: samba
+      state: latest
