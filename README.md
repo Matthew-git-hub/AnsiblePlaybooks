@@ -1,4 +1,3 @@
 # AnsiblePlaybooks
 
-Ansible playbooks 
 
