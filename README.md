@@ -1,6 +1,6 @@
 # AnsiblePlaybooks
 
-Contains Ansible Playbooks
+Ansible playbooks created for learning
 
 # Playbooks
 
