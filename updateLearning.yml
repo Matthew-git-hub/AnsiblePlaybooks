@@ -1,16 +1,20 @@
 #Updates Stuff
 
-- name: update stuff
+---
+- name: updates Stuff
   hosts: pi
   remote_user: matthew
 
-  tasks:
--   name: ensures Python is up to date
-    apt:
+  tasks: 
+  - name: ensure python is up to date
+    apt: 
       name: python
       state: latest
-
--   name: ensures Samaba is up to date
-    apt:
-      name: samba
-      state: latest
+  - name: ensure samba is up to date
+    apt: 
+     name: samba
+     state: latest
+  - name: uninstalls groovy
+    apt: 
+      name: groovy
+      state: absent
