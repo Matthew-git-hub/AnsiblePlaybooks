@@ -1,0 +1,48 @@
+#Initial Server Setup
+
+---
+
+- name: Ubuntu Server Setup
+  become: true
+  hosts: pi
+
+  tasks: 
+    -  name: Install Updates
+       apt: 
+         upgrade: yes
+         update_cache: yes
+
+    -  name: Make a wheel group
+       group:
+           name: wheel
+           state: present
+
+    - name: allow wheel group to have passwordless sudo
+      lineinfile:
+          path: /etc/sudoers
+          state: present
+          regexp: '^wheel'
+          line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+          validate: '/usr/sbin/visudo -cf %s'
+
+    - name: create user and add to wheel group
+      user:
+          name: 'matthew'
+          state: present
+          groups: wheel
+          append: true
+          create_home: true
+          shell: /bin/bash
+
+    - name: disable root password authentication
+      lineinfile:
+          path: /etc/ssh/sshd_config
+          state: present
+          regexp: '^#?PermitRootLogin'
+          line: 'PermitRootLogin prohibit-password'
+
+    - name: Allow SSH through the Firewall
+      ufw:
+        rule: allow
+        name: OpenSSH
+
