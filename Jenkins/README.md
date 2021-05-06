@@ -1,3 +1,3 @@
-install ansible in an AWS EC2 instance
+install Jenkins
 
 **doesnt work atm WIP
